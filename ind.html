@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="libraryApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Book Count</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        input {
+            width: 60px;
+        }
+    </style>
+</head>
+<body ng-controller="LibraryController">
+
+    <h1>Library Book Categories</h1>
+
+    <!-- Table to display categories and book counts -->
+    <table>
+        <thead>
+            <tr>
+                <th>Category</th>
+                <th>Book Count</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="book in library">
+                <td>{{ book.category }}</td>
+                <td><input type="number" ng-model="book.count" /></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Form to add a new category -->
+    <div>
+        <h3>Add New Category</h3>
+        <form ng-submit="addCategory()">
+            <input type="text" ng-model="newCategoryName" placeholder="Category Name" required />
+            <input type="number" ng-model="newCategoryCount" placeholder="Initial Count" required />
+            <button type="submit">Add Category</button>
+        </form>
+        <p ng-if="categoryExists">Category name must be unique!</p>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
